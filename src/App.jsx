@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react"
 import { fetchData } from "./api"
-import { DollarSign, TrendingUp, BarChart2 } from 'lucide-react';
+import { DollarSign, TrendingUp, BarChart2, Search } from 'lucide-react';
 
 
 function App() {
@@ -61,40 +61,82 @@ function App() {
     };
 
   return (
-    <div className="bg-black text-white min-h-screen p-10">
-
-      <header className="mb-8">
+    <div className="bg-black text-white min-h-screen p-6">
+      {/* Header */}
+      <header className="text-center mb-10">
         <div className="text-5xl font-bold mb-2 font-display">Block Pulse</div>
-        <div className="text-lg text-gray-400">Track and analyze your favorite cryptocurrencies</div>
+        <div className="text-lg text-gray-400">
+          Track and analyze your favorite cryptocurrencies
+        </div>
       </header>
 
-      <section className="">
-        <div className="flex ">
-          <DollarSign className="text-green-400"/>
+      {/* Stats Section */}
+      <section className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+        <div className="flex items-center bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700">
+          <DollarSign className="text-green-400 w-10 h-10 mr-4" />
           <div>
-            <div>Total Market Cap</div>
-            <div>{calculateTotalMarketCap()}</div>
+            <div className="text-sm text-gray-400">Total Market Cap</div>
+            <div className="text-3xl font-bold">{calculateTotalMarketCap()}</div>
           </div>
         </div>
 
-        <div>
-          <TrendingUp className="text-green-400" />
+        <div className="flex items-center bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700">
+          <TrendingUp className="text-violet-800 w-10 h-10 mr-4" />
           <div>
-            <div>Average 24h Change</div>
-            <div>{calculateAverageChange()}</div>
+            <div className="text-sm text-gray-400">Average 24h Change</div>
+            <div className="text-3xl font-bold">{calculateAverageChange()}</div>
           </div>
         </div>
 
-        <div>
-          <BarChart2 className="text-green-400" />
+        <div className="flex items-center bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700">
+          <BarChart2 className="text-green-400 w-10 h-10 mr-4" />
           <div>
-            <div>Highest Performer Today</div>
-            <div>{topPerformer()}</div>
+            <div className="text-sm text-gray-400">Highest Performer Today</div>
+            <div className="text-3xl font-bold">{topPerformer()}</div>
           </div>
         </div>
-
       </section>
-      
+
+      {/* Search Section */}
+      <section className="flex justify-center">
+        <div className="flex items-center bg-gray-800 p-4 rounded-lg border border-slate-800 w-full max-w-md">
+          <Search className="text-gray-400 w-6 h-6 mr-3" />
+          <input
+            type="search"
+            placeholder="Search by name or symbol"
+            className="bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-md w-full"
+          />
+        </div>
+      </section>
+
+      <section className="bg-gray-900 p-6 rounded-lg shadow-lg border border-gray-800 mt-8 max-w-4xl mx-auto">
+        {/* Header Row */}
+        <div className="flex text-gray-300 font-bold border-b border-gray-700 pb-4 mb-4 text-lg tracking-wide">
+          <div className="flex-1">Coin</div>
+          <div className="flex-1 text-right">Price</div>
+          <div className="flex-1 text-right">24h Change</div>
+          <div className="flex-1 text-right">Market Cap</div>
+        </div>
+
+        {/* Dynamic Rows */}
+        {cryptoData.map((coin) => (
+          <div
+            key={coin.id}
+            className="flex text-white items-center py-3 hover:bg-gray-800 transition-colors duration-200"
+          >
+            <div className="flex-1 font-medium">{coin.name} ({coin.symbol})</div>
+            <div className="flex-1 text-right font-mono">${parseFloat(coin.priceUsd).toFixed(2)}</div>
+            <div
+              className={`flex-1 text-right font-mono ${
+                parseFloat(coin.changePercent24Hr) > 0 ? "text-green-400" : "text-red-400"
+              }`}
+            >
+              {parseFloat(coin.changePercent24Hr).toFixed(2)}%
+            </div>
+            <div className="flex-1 text-right font-mono">${(coin.marketCapUsd / 1e9).toFixed(2)}B</div>
+          </div>
+        ))}
+      </section>
     </div>
   )
 }
