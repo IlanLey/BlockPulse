@@ -2,9 +2,9 @@
 
 Submitted by: **Ilan Leybman**
 
-This web app: **Block Pulse - Web3 Inspired BlockChain UI Dashboard**
+This web app: **Block Pulse - Web3 Inspired BlockChain Dashboard**
 
-Time spent: **5** hours spent in total
+Time spent: **8** hours spent in total
 
 ## Required Features
 
@@ -46,7 +46,7 @@ GIF created with LICEcap
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+I had a lot of trouble figuring out how API's work and trying to see how to pull the correct data from the object. This became a big issue when I was trying to render my statistic components and I also had a lot of issues figuring out how to filter data based on input. I feel like with practice I will improve as I've gotten more comfortable using functions like map() and filter() but trying to put everything I learned together will take time. Overall, I need to keep building projects that interest me and I will be adding further features to this project as Web3 is a topic that interests me.
 
 ## License
 
