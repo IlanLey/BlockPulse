@@ -40,7 +40,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='../BlockPulse/src/assets/demo.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+![Block Pulse Explorer Demo](./src/assets/demo.gif)
 
 GIF created with LICEcap
 
